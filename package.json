@@ -1,0 +1,13 @@
+{
+  "name": "cronjob-resumen-gmail",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.21.0",
+    "imapflow": "^1.0.154",
+    "nodemailer": "^6.9.15"
+  }
+}
