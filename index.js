@@ -19,11 +19,11 @@
 //  Son como "plugins" que anaden funcionalidades a Node.js.
 // ================================================================
 
-// imapflow: permite CONECTARSE al servidor IMAP de Gmail
+// *imapflow* : permite CONECTARSE al servidor IMAP de Gmail
 // para LEER los correos (como si abrieras Gmail desde otro programa)
 import { ImapFlow } from 'imapflow'
 
-// @google/generative-ai: SDK oficial de Google para usar GEMINI
+// *@google/generative-ai*: SDK oficial de Google para usar GEMINI
 // Gemini es la inteligencia artificial que CLASIFICARA tus emails
 // en las categorias: MUY IMPORTANTE, IMPORTANTE, NEWSLETTER, RRSS
 import { GoogleGenerativeAI } from '@google/generative-ai'
@@ -47,6 +47,10 @@ import 'dotenv/config'
 //  contiene tus contrasenas. Esta en .gitignore.
 //  En Railway las variables se configuran en el Dashboard.
 // ================================================================
+
+//AQUI VA EL FLAG para probar el script localmente sin esperar a las 08:30
+const ES_TEST = process.argv.includes('--test')
+
 
 // Extraemos las 4 variables del entorno.
 // Si no estan definidas, la variable vale undefined.
@@ -485,7 +489,7 @@ async function main() {
   // PASO 1: Comprobar hora
   // Railway ejecuta esto a las 6:30 y 7:30 UTC
   // Solo UNA de esas ejecuciones coincidira con las 08:30 Madrid
-  if (!isMadrid830()) {
+  if (!ES_TEST && !isMadrid830()) {
     console.log('No son las 08:30 en Madrid. Saliendo.')
     process.exit(0)  // Codigo 0 = exito (no es error, solo no toca)
   }
