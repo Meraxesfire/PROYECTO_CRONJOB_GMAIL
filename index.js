@@ -12,6 +12,20 @@ if (!GMAIL_EMAIL || !GMAIL_APP_PASSWORD || !GEMINI_API_KEY || !TO_EMAIL) {
 
 function isMadrid830() {
   const now = new Date()
+  const utcMinutos = now.getUTCHours()*60 + now.getUTCMinutes()
+  const mes = now.getUTCMonth() + 1
+  const dia = now.getUTCDate()
+
+  let esVerano
+  if (mes<3 || mes>10) esVerano = false
+  else if (mes>3 && mes<10) esVerano = true
+  else if (mes===3) esVerano= dia>=25
+  else esVerano = dia<25
+
+  const madridMinutos = utcMinutos + (esVerano ? 120 : 60)
+  return madridMinutos === 510
+  /*FUNCION ANTIGUA PARA CALCULO DE HORA:
+  const now = new Date()
   const parts = new Intl.DateTimeFormat('es-ES', {
     timeZone: 'Europe/Madrid',
     hour: '2-digit',
@@ -19,6 +33,7 @@ function isMadrid830() {
     hour12: false
   }).formatToParts(now)
   return parts.find(p => p.type === 'hour').value === '08' && parts.find(p => p.type === 'minute').value === '30'
+}*/
 }
 
 async function fetchUnreadEmails() {
