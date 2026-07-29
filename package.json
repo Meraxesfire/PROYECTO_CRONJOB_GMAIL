@@ -8,6 +8,7 @@
   "dependencies": {
     "@google/generative-ai": "^0.21.0",
     "imapflow": "^1.0.154",
-    "nodemailer": "^6.9.15"
+    "nodemailer": "^6.9.15",
+    "dotenv": "^16.4.0"
   }
 }

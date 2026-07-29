@@ -1,6 +1,7 @@
 import { ImapFlow } from 'imapflow'
 import { GoogleGenerativeAI } from '@google/generative-ai'
 import nodemailer from 'nodemailer'
+import 'dotenv/config'
 
 const { GMAIL_EMAIL, GMAIL_APP_PASSWORD, GEMINI_API_KEY, TO_EMAIL } = process.env
 
@@ -123,10 +124,10 @@ function buildHTML(groups) {
   })
 
   const blocks = [
-    { key: 'MUY_IMPORTANTE',     title: 'MUY IMPORTANTES',      icon: '🔴', color: '#dc3545', bg: '#fff5f5' },
-    { key: 'IMPORTANTE',         title: 'IMPORTANTES',           icon: '🟡', color: '#e67e22', bg: '#fffaf0' },
+    { key: 'MUY_IMPORTANTE', title: 'MUY IMPORTANTES', icon: '🔴', color: '#dc3545', bg: '#fff5f5' },
+    { key: 'IMPORTANTE', title: 'IMPORTANTES', icon: '🟡', color: '#e67e22', bg: '#fffaf0' },
     { key: 'NEWSLETTER_EDUCATIVA', title: 'NEWSLETTERS EDUCATIVAS', icon: '🟢', color: '#28a745', bg: '#f0fff4' },
-    { key: 'RRSS',               title: 'REDES SOCIALES',        icon: '🔵', color: '#3498db', bg: '#f0f8ff' }
+    { key: 'RRSS', title: 'REDES SOCIALES', icon: '🔵', color: '#3498db', bg: '#f0f8ff' }
   ]
 
   const blockHTML = blocks.map(block => {
@@ -180,7 +181,7 @@ function esc(s) {
 async function sendEmail(html) {
   const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
-    port: 465,
+    port: 587,
     secure: true,
     auth: { user: GMAIL_EMAIL, pass: GMAIL_APP_PASSWORD }
   })
