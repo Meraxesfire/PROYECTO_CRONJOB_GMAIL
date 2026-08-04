@@ -1,5 +1,5 @@
 {
   "$schema": "https://railway.com/railway.schema.json",
-  "cronSchedule": "30 6,7 * * *"
+  "cronSchedule": "30 6 * * *"
 
 }
